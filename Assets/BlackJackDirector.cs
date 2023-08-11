@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BlackJackDirector : MonoBehaviour
 {
@@ -23,7 +24,13 @@ public class BlackJackDirector : MonoBehaviour
 
     // 山札のインデックス
     int cardIndex;
+
+    // 待機時間
     const float NextWaitTime = 1;
+
+    AudioSource audioPlayer;
+    [SerializeField] AudioClip win;
+    [SerializeField] AudioClip lose;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +62,8 @@ public class BlackJackDirector : MonoBehaviour
         hitCard(playerHand).FlipCard();
 
         textPlayerInfo.text = "" + getScore(playerHand);
+
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -161,6 +170,63 @@ public class BlackJackDirector : MonoBehaviour
         textDealerInfo.text = "" + score;
 
         // TODO ディーラーが1枚引く
+        StartCoroutine(dealerHit());
+    }
 
+    // ディーラーの番
+    IEnumerator dealerHit()
+    {
+        yield return new WaitForSeconds(NextWaitTime);
+
+        int score = getScore(dealerHand);
+        
+        if (18 > score) 
+        {
+            CardController card = hitCard(dealerHand);
+            card.FlipCard();
+
+            textDealerInfo.text = "" + getScore(dealerHand);
+        }
+
+        score = getScore(dealerHand);
+        if (21 < score)
+        {
+            textDealerInfo.text += "バースト";
+            textPlayerInfo.text = "勝利!!";
+            audioPlayer.PlayOneShot(win);
+        }
+        else if (17 < score)        
+        {
+            string textplayer = "勝利!!";
+            if (getScore(playerHand) < getScore(dealerHand))
+            {
+                textplayer = "敗北...";
+            }
+            else if (getScore(playerHand) == getScore(dealerHand))
+            {
+                textplayer = "引き分け!!";
+            }
+            textPlayerInfo.text = textplayer;
+            
+            // SEを鳴らす
+            if (textplayer.Contains("勝利"))
+            {
+                audioPlayer.PlayOneShot(win);
+            }
+            else if (textplayer.Contains("敗北"))
+            {
+                audioPlayer.PlayOneShot(lose);
+            }
+        }
+        else
+        {
+            StartCoroutine(dealerHit());
+        }
+    }
+
+    // リスタート
+    public void OnClickRestart()
+    {
+        SceneManager.LoadScene("BlackJackScene");
     }
 }
