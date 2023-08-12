@@ -54,6 +54,18 @@ public class CardsDirector : MonoBehaviour
         return ret;
     }
 
+    // 神経衰弱用のカードを作成
+    public List<CardController> GetMemoryCards()
+    {
+        List<CardController> ret = new List<CardController>();
+        ret.AddRange(createCards(SuitType.Spade, 10));
+        ret.AddRange(createCards(SuitType.Diamond, 10));
+
+        // シャッフルする
+        ShuffleCards(ret);
+        return ret;
+    }
+
     // シャッフル
     public void ShuffleCards(List<CardController> cards)
     {
@@ -68,7 +80,7 @@ public class CardsDirector : MonoBehaviour
     }
 
     // カード作成
-    List<CardController> createCards(SuitType suittype)
+    List<CardController> createCards(SuitType suittype, int count = -1)
     {
         List<CardController> ret = new List<CardController>();
 
@@ -95,8 +107,13 @@ public class CardsDirector : MonoBehaviour
             prefabcards = prefabJokers;
         }
 
+        if (0 > count)
+        {
+            count = prefabcards.Count;
+        }
+
         // カード生成
-        for (int i = 0; i < prefabcards.Count; i++)
+        for (int i = 0; i < count; i++)
         {
             GameObject obj = Instantiate(prefabcards[i]);
 
