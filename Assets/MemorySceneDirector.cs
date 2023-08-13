@@ -21,7 +21,7 @@ public class MemorySceneDirector : MonoBehaviour
     // タイマー用の変数群
     bool isGameEnd;
     float gameTimer;
-    int oldSecend;
+    int oldSecond;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,7 @@ public class MemorySceneDirector : MonoBehaviour
         }
 
         selecetCards = new List<CardController>();
-        oldSecend = -1;
+        oldSecond = -1;
     }
 
     // Update is called once per frame
@@ -88,14 +88,14 @@ public class MemorySceneDirector : MonoBehaviour
         int sec = (int)timer % 60;
         string ret = textTimer.text;
 
-        if (oldSecend != sec)
+        if (oldSecond != sec)
         {
             int min = (int)timer / 60;
             string pmin = string.Format("{0:D2}", min);
             string psec = string.Format("{0:D2}", sec);
 
             ret = pmin + ":" + psec;
-            oldSecend = sec;
+            oldSecond = sec;
         }
         return ret;
     }
