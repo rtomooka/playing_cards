@@ -326,7 +326,7 @@ public class SolitaireSceneDirector : MonoBehaviour
                                  && 1 > stockCards.Count;
         }
         // 場札に置けるカード
-        else if (frontCard && foundation.Contains(frontCard.transform.root)
+        else if (frontCard && column.Contains(frontCard.transform.root)
                            && 1 > frontCard.transform.childCount
                            && frontCard.No - 1 == selectCard.No
                            && frontCard.SuitColor != selectCard.SuitColor)
