@@ -4,5 +4,26 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Playing Cards/Scenes/TopScene.unity
+    guid: 9f3e3ec43cd42894c9853fe24ad13f04
+  - enabled: 1
+    path: Assets/Playing Cards/Scenes/BlackJackScene.unity
+    guid: d2ec62fdbd0734e4ebaab8e7443e911b
+  - enabled: 1
+    path: Assets/Playing Cards/Scenes/CoupleScene.unity
+    guid: 04d93a83edbfc964f8c0679b38490b8c
+  - enabled: 1
+    path: Assets/Playing Cards/Scenes/HighLowScene.unity
+    guid: 473fc353875aaf14ca32b78419fc251b
+  - enabled: 1
+    path: Assets/Playing Cards/Scenes/MemoryScene.unity
+    guid: 36f80809b65c2f74eaae240223774d2f
+  - enabled: 1
+    path: Assets/Playing Cards/Scenes/PokerScene.unity
+    guid: 9e4d1471927627b4aafbb67fbd0d80f4
+  - enabled: 1
+    path: Assets/Playing Cards/Scenes/SolitaireScene.unity
+    guid: 5342767f9f708664f8087874cf02e5f5
   m_configObjects: {}
