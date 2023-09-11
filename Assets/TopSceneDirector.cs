@@ -52,4 +52,22 @@ public class TopSceneDirector : MonoBehaviour
     {
         SceneManager.LoadScene("SolitaireScene");
     }
+
+    public void OnClick_1920x1080()
+    {
+        // 解像度を1080pに設定
+        Screen.SetResolution(1920, 1080, false);
+    }
+
+    public void OnClick_1280x720()
+    {
+        // 解像度を720pに設定
+        Screen.SetResolution(1280, 720, false);
+    }
+
+    public void OnClick_960x540()
+    {
+        // 解像度を540pに設定
+        Screen.SetResolution(960, 540, false);
+    }
 }
